@@ -1,0 +1,123 @@
+{% extends 'booking/index.html' %}
+
+{% block content %}
+
+<div class="container py-4">
+    <header data-bs-theme="dark">
+
+        <div class="you_img_1"></div>
+        <div class="p-5 mb-4 bg-body-tertiary rounded-3">
+            <div class="container-fluid py-4">
+                <h1 class="display-5 fw-bold">РОСКОШНЕЙ, ЧЕМ КАЖЕТСЯ!</h1>
+                <p class="col-md-8 fs-4">Империя Пельменей – это больше,
+                    чем ресторан, это королевство вкуса и гастрономического
+                    наслаждения! Империя Пельменей приглашает вас стать
+                    частью легенды вкуса, где каждый кусочек – это истинное
+                    наслаждение. Добро пожаловать, Ваше Величество! 👑</p>
+                <button class="btn btn-primary btn-lg" type="button">Хочу
+                    забронировать столик!
+                </button>
+            </div>
+        </div>
+
+        <form action="http://foo.com" method="post">
+            <div>
+                <label for="say">What greeting do you want to say?</label>
+                <input name="say" id="say" value="Hi"/>
+            </div>
+            <div>
+                <label for="to">Who do you want to say it to?</label>
+                <input name="to" id="to" value="Mom"/>
+            </div>
+            <div>
+                <button>Send my greetings</button>
+            </div>
+        </form>
+
+        <div class="row align-items-md-stretch">
+            <div class="col-md-6">
+                <div class="h-100 p-5 text-bg-dark rounded-3">
+                    <h2>Change the background</h2>
+                    <p>Swap the background-color utility and add a
+                        `.text-*` color utility to mix up the jumbotron
+                        look. Then, mix and match with additional component
+                        themes and more.</p>
+                    <button class="btn btn-outline-light" type="button">
+                        Example button
+                    </button>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="h-100 p-5 bg-body-tertiary border rounded-3">
+                    <h2>Add borders</h2>
+                    <p>Or, keep it light and add a border for some added
+                        definition to the boundaries of your content. Be
+                        sure to look under the hood at the source HTML here
+                        as we've adjusted the alignment and sizing of both
+                        column's content for equal-height.</p>
+                    <button class="btn btn-outline-secondary"
+                            type="button">Example button
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <footer class="pt-3 mt-4 text-body-secondary border-top">
+        </footer>
+
+        <div class="row align-items-md-stretch">
+            <div class="col-md-6" id="outer">
+                <div id="layout" class="cleared">
+                    <div class="cols cleared">
+                        <h1>Контактная информация</h1>
+                        <table border="0" width="100%" cellpadding="5">
+                            <tr height="25">
+                                <td width="25%">Название компании:</td>
+                                <td>ООО «Империя пельменей»</td>
+                            </tr>
+                            <tr height="25">
+                                <td>ИНН/КПП:</td>
+                                <td>7725000000/772500000</td>
+                            </tr>
+                            <tr height="25">
+                                <td>Юридический адрес:</td>
+                                <td>121614, г. Москва, ул. Крылатская
+                                    улица, д. 77к7, оф. 777
+                                </td>
+                            </tr>
+                            <tr height="25">
+                                <td>Фактический адрес:</td>
+                                <td>121614, г. Москва, ул. Крылатская
+                                    улица, д. 77к7, оф. 777
+                                </td>
+                            </tr>
+                            <tr height="25">
+                                <td>Режим работы:</td>
+                                <td>Пн.-Вс. 9:00 - 23:00</td>
+                            </tr>
+                            <tr height="25">
+                                <td>Телефон:</td>
+                                <td>8 (495) 12-34-567</td>
+                            </tr>
+                            <tr height="25">
+                                <td>e-mail:</td>
+                                <td>info@example.com</td>
+                            </tr>
+                        </table>
+                        <div id="sidebar" class="sidebar"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2245.5213574000695!2d37.4261954190736!3d55.74944499254673!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46b54ed6bc8eb0cb%3A0xd2c565a8c8864bdc!2sKrylatskaya%20Ulitsa%2C%2077%2C%20Moskva%2C%20121552!5e0!3m2!1sen!2sru!4v1733079876842!5m2!1sen!2sru"
+                        width="600" height="450" style="border:0;"
+                        allowfullscreen="" loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+
+        <footer class="pt-3 mt-4 text-body-secondary border-top">
+            &copy; 2024
+        </footer>
+
+        {% endblock %}

@@ -24,7 +24,6 @@ class Reservation(models.Model):
 
     def save(self):
         if not self.reservation_number:
-            # Generate ID once, then check the db. If exists, keep trying.
             self.reservation_number = self.id_generator()
             while Reservation.objects.filter(urlhash=self.reservation_number).exists():
                 self.reservation_number = self.id_generator()
