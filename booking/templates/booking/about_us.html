@@ -1,6 +1,15 @@
 {% extends 'booking/index.html' %}
 
 {% block content %}
+<head>
+    <style>
+        .center-img {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    </style>
+</head>
 <body>
 <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
     <symbol id="check2" viewBox="0 0 16 16">
@@ -85,37 +94,47 @@
         <!-- Three columns of text below the carousel -->
         <div class="row">
             <div class="col-lg-4">
-                <img src="{{ MEDIA_URL }}booking/Petr.jpg" alt="Petr">
+                <img src="{{ MEDIA_URL }}booking/Petr2.png"
+                     alt="Ольга Начинкина"
+                     class="bd-placeholder-img rounded-circle center-img"
+                     width="140"
+                     height="140">
                 <h2 class="fw-normal" align="center">Пётр Тестович</h2>
-                <p>Шеф-повар - гений кулинарии, который утверждает, что тесто может чувствовать настроение повара. Когда он лепит пельмени, его окружают ароматы вдохновения и лёгкая мелодия из муки.</p>
+                <p>Шеф-повар - гений кулинарии, который утверждает, что тесто
+                    может чувствовать настроение повара. Когда он лепит
+                    пельмени, его окружают ароматы вдохновения и лёгкая мелодия
+                    из муки.</p>
 
             </div><!-- /.col-lg-4 -->
             <div class="col-lg-4">
-                <svg class="bd-placeholder-img rounded-circle" width="140"
-                     height="140" xmlns="http://www.w3.org/2000/svg" role="img"
-                     aria-label="Placeholder"
-                     preserveAspectRatio="xMidYMid slice" focusable="false">
-                    <title>Placeholder</title>
-                    <rect width="100%" height="100%"
-                          fill="var(--bs-secondary-color)"/>
-                </svg>
-                <h2 class="fw-normal">Ольга Начинкина</h2>
-                <p>Сомелье соусов - она подбирает соус к каждому пельменю с такой тщательностью, будто это вино к мишленовскому блюду. Её авторский "бульон для души" получил премию «Ложка года».</p>
+                <img src="{{ MEDIA_URL }}booking/Olga2.png"
+                     alt="Ольга Начинкина"
+                     class="bd-placeholder-img rounded-circle center-img"
+                     width="140"
+                     height="140">
+                <h2 class="fw-normal" align="center">Ольга Начинкина</h2>
+                <p>Сомелье соусов - она подбирает соус к каждому пельменю с
+                    такой тщательностью, будто это вино к мишленовскому блюду.
+                    Её авторский "бульон для души" получил премию «Ложка
+                    года».</p>
+            </div>
+            <!-- /.col-lg-4 -->
+            <style>
 
-            </div><!-- /.col-lg-4 -->
+            </style>
             <div class="col-lg-4">
-                <svg class="bd-placeholder-img rounded-circle" width="140"
-                     height="140" xmlns="http://www.w3.org/2000/svg" role="img"
-                     aria-label="Placeholder"
-                     preserveAspectRatio="xMidYMid slice" focusable="false">
-                    <title>Placeholder</title>
-                    <rect width="100%" height="100%"
-                          fill="var(--bs-secondary-color)"/>
-                </svg>
-                <h2 class="fw-normal">Василий Бульонович</h2>
-                <p>Мастер настроения - пельмень, который украшает ресторан пельменными гирляндами и встречает гостей с фразой: «Ваш пельмень уже ждёт своего героя!»</p>
-
-            </div><!-- /.col-lg-4 -->
+                <img src="{{ MEDIA_URL }}booking/Vasya2.png"
+                     alt="Василий Бульонович"
+                     class="bd-placeholder-img rounded-circle center-img"
+                     width="140"
+                     height="140">
+                <h2 class="fw-normal" align="center">Василий Бульонович</h2>
+                <p class="text-center">Мастер настроения - пельмень, который
+                    украшает ресторан
+                    пельменными гирляндами и встречает гостей с фразой: «Ваш
+                    пельмень уже ждёт своего героя!»</p>
+            </div>
+            <!-- /.col-lg-4 -->
         </div><!-- /.row -->
 
 
