@@ -21,3 +21,5 @@ class ProfileView(UpdateView):
 
 class FeedbackCreateView(CreateView):
     model = Feedback
+    fields = ['name', 'phone', 'message']
+    success_url = '/'
