@@ -10,6 +10,3 @@ urlpatterns = [
     path("", IndexView.as_view(), name="index_page"),
     path("about/", AboutView.as_view(), name="about_page"),
 ]
-
-if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

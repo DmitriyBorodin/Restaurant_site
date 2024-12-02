@@ -1,5 +1,6 @@
 <!doctype html>
 {% load static %}
+{% csrf_token %}
 <html lang="en" data-bs-theme="auto">
 <head>
     <script src="{% static 'js/color-modes.js' %}"></script>
@@ -175,7 +176,14 @@
 
 </head>
 <body>
+<h3 align="center">
+    {% if user.is_authenticated %}
+    Вы вошли как {{user.email}}
+    {% else %}
+    Вы не вошли
+    {% endif %}
 
+</h3>
 <div class="container">
     <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
         <a href="/"
@@ -218,9 +226,24 @@
             </li>
             <li class="nav-item"><a href="#" class="nav-link">О ресторане!</a>
             </li>
-            <li class="nav-item"><a href="#" class="nav-link">Личный
+            {% if user.is_authenticated %}
+            <li class="nav-item"><a href="/users/profile/" class="nav-link">Личный
                 кабинет</a>
             </li>
+            <li class="nav-item">
+                <form action="{% url 'users:logout' %}" method="post"
+                      class="nav-link p-0 m-0">
+                    {% csrf_token %}
+                    <button type="submit"
+                            class="btn btn-link nav-link">
+                        Выйти
+                    </button>
+                </form>
+            </li>
+            {% else %}
+            <li class="nav-item"><a href="/users/login/" class="nav-link">Личный
+                кабинет</a>
+                {% endif %}
         </ul>
     </header>
 </div>

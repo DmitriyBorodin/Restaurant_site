@@ -22,4 +22,4 @@ class ProfileView(UpdateView):
 class FeedbackCreateView(CreateView):
     model = Feedback
     fields = ['name', 'phone', 'message']
-    success_url = '/'
+    success_url = reverse_lazy('booking:index_page')
