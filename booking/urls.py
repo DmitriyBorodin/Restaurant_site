@@ -1,4 +1,6 @@
 from django.urls import path
+
+from booking import views
 from booking.apps import BookingConfig
 from booking.views import IndexView, AboutView, ReservationCreateView, \
     ReservationListView, ReservationDetailView, ReservationUpdateView, \

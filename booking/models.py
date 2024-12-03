@@ -36,21 +36,32 @@ class Table(models.Model):
 
 class Reservation(models.Model):
 
-    reserved_table = models.ForeignKey(Table, on_delete=models.SET_NULL, related_name='reservations', **NULLABLE)
-    reservation_date = models.DateField(verbose_name='Забронированная дата')
-    reservation_start = models.TimeField(verbose_name='Забронированное время')
-    guests_amount = models.PositiveIntegerField(default=1, verbose_name='Количество гостей')
+    GUEST_AMOUNT_CHOICES = (
+        ('1-2', '1-2'),
+        ('3-4', '3-4'),
+        ('4+', '4+'),
+    )
+
+
+    reservation_date = models.DateField(verbose_name='Дата')
+    reservation_start = models.TimeField(verbose_name='Время')
+    guests_amount = models.CharField(default='1-2', choices=GUEST_AMOUNT_CHOICES, verbose_name='Количество гостей')
+    reservation_commentary = models.CharField(max_length=255, verbose_name='Пожелания к брони', **NULLABLE)
+
+    reserved_table = models.ForeignKey(Table, on_delete=models.SET_NULL, related_name='reserved_table', **NULLABLE)
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="Дата создания бронирования")
     reservation_number = models.CharField(max_length=6, null=True, blank=True, unique=True)
-    owner = models.ForeignKey(User, on_delete=models.SET_NULL, verbose_name="Владелец брони", **NULLABLE)
 
+    owner = models.ForeignKey(User, on_delete=models.SET_NULL, verbose_name="reservation_owner", **NULLABLE)
+
+    @staticmethod
     def id_generator(size=6, chars=string.ascii_uppercase + string.digits):
         return ''.join(random.choice(chars) for _ in range(size))
 
     def save(self):
         if not self.reservation_number:
             self.reservation_number = self.id_generator()
-            while Reservation.objects.filter(urlhash=self.reservation_number).exists():
+            while Reservation.objects.filter(reservation_number=self.reservation_number).exists():
                 self.reservation_number = self.id_generator()
         super(Reservation, self).save()
 

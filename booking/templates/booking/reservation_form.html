@@ -1,0 +1,55 @@
+{% extends 'booking/index.html' %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row text">
+        <div class="col-12">
+            <div class="row">
+                <div class="col-8">
+                    <div class="card">
+                        <div class="card-body">
+                            <form method="post" enctype="multipart/form-data"
+                                  id="reservation_form">
+                                {% csrf_token %}
+                                {{ form.as_p }}
+                                <button type="submit" class="btn btn-success"
+                                        id="reservation">
+                                    {% if object %}
+                                    Сохранить
+                                    {% else %}
+                                    Забронировать
+                                    {% endif %}
+                                </button>
+                                <a class="btn btn-primary"
+                                   href="{% url 'booking:index_page' %}"
+                                   role="button">Отмена </a>
+                            </form>
+
+                            <script>
+                                // Получаем ссылку на форму и кнопку отправки
+                                const form = document.getElementById('reservation_form');
+                                const sendButton = document.getElementById('reservation');
+
+                                // Добавляем обработчик на событие отправки формы
+                                form.addEventListener('submit', function(event) {
+                                    // Предотвращаем отправку формы, чтобы показать уведомление сначала
+                                    event.preventDefault();
+
+                                    // Показываем всплывающее уведомление
+                                    alert('Столик забронирован! Уже ждём вас :)');
+
+                                    // Теперь отправляем форму
+                                    form.submit();
+                                });
+                            </script>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

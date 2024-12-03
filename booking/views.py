@@ -18,7 +18,7 @@ class AboutView(TemplateView):
 class ReservationCreateView(CreateView):
     model = Reservation
     form_class = ReservationForm
-
+    success_url = reverse_lazy('booking:index_page')
 
 class ReservationListView(ListView):
     model = Reservation

@@ -233,14 +233,6 @@
     </ul>
 </div>
 
-<h3 align="center">
-    {% if user.is_authenticated %}
-    Вы вошли как {{user.email}}
-    {% else %}
-    Вы не вошли
-    {% endif %}
-
-</h3>
 <div class="container">
     <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
         <a href="/"
@@ -284,8 +276,8 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="{% url 'booking:reservation_page' %}"
-                   class="nav-link {% if request.resolver_match.url_name == 'reservation_page' %}active{% endif %}">
+                <a href="{% url 'booking:reservation_create' %}"
+                   class="nav-link {% if request.resolver_match.url_name == 'reservation_create' %}active{% endif %}">
                     Бронирование
                 </a>
             </li>

@@ -1,9 +1,13 @@
 from django.shortcuts import render
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, UpdateView
+from django.views.generic import CreateView, UpdateView, TemplateView
 
 from users.forms import UserRegisterForm, UserProfileForm
 from users.models import User, Feedback
+
+
+class ProfileTemplateView(TemplateView):
+    template_name = "users/profile.html"
 
 
 class UserRegisterView(CreateView):

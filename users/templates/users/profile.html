@@ -1,0 +1,14 @@
+{% extends 'booking/index.html' %}
+
+{% block content %}
+
+<h3 align="center">
+    {% if user.is_authenticated %}
+    Вы вошли как {{user.email}}
+    {% else %}
+    Вы не вошли
+    {% endif %}
+
+</h3>
+
+{% endblock %}
