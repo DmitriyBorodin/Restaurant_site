@@ -25,24 +25,6 @@
                                    href="{% url 'booking:index_page' %}"
                                    role="button">Отмена </a>
                             </form>
-
-                            <script>
-                                // Получаем ссылку на форму и кнопку отправки
-                                const form = document.getElementById('reservation_form');
-                                const sendButton = document.getElementById('reservation');
-
-                                // Добавляем обработчик на событие отправки формы
-                                form.addEventListener('submit', function(event) {
-                                    // Предотвращаем отправку формы, чтобы показать уведомление сначала
-                                    event.preventDefault();
-
-                                    // Показываем всплывающее уведомление
-                                    alert('Столик забронирован! Уже ждём вас :)');
-
-                                    // Теперь отправляем форму
-                                    form.submit();
-                                });
-                            </script>
                         </div>
                     </div>
                 </div>

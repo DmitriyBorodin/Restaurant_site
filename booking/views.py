@@ -1,3 +1,5 @@
+from django.contrib import messages
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import TemplateView, CreateView, UpdateView, \
@@ -15,10 +17,21 @@ class AboutView(TemplateView):
     template_name = "booking/about_us.html"
 
 
-class ReservationCreateView(CreateView):
+class ReservationCreateView(LoginRequiredMixin, CreateView):
     model = Reservation
     form_class = ReservationForm
     success_url = reverse_lazy('booking:index_page')
+    login_url = '/users/login/'
+
+    def form_valid(self, form):
+        # Сохраняем форму
+        response = super().form_valid(form)
+
+        # Добавляем сообщение об успешной брони
+        messages.success(self.request, 'Столик забронирован! Уже ждём вас :)')
+
+        # Возвращаем стандартное поведение
+        return response
 
 class ReservationListView(ListView):
     model = Reservation
@@ -28,11 +41,12 @@ class ReservationDetailView(DetailView):
     model = Reservation
 
 
-class ReservationUpdateView(UpdateView):
+class ReservationUpdateView(LoginRequiredMixin, UpdateView):
     model = Reservation
     form_class = ReservationForm
 
 
-class ReservationDeleteView(DeleteView):
+class ReservationDeleteView(LoginRequiredMixin, DeleteView):
     model = Reservation
     success_url = reverse_lazy("booking:reservation_list")
+    login_url = '/users/login/'

@@ -9,6 +9,7 @@
                         <div class="card-body">
                             {% csrf_token %}
                             {{ form.as_p }}
+                            <input type="hidden" name="next" value="{{ request.GET.next }}">
                             <button type="submit" class="btn btn-success">
                                 Войти
                             </button>
