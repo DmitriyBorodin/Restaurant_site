@@ -42,12 +42,18 @@ class Reservation(models.Model):
         ('4+', '4+'),
     )
 
+    RESERVATION_STATUS_CHOICES = (
+        ('Активна', 'Активна'),
+        ('Истекла', 'Истекла'),
+        ('Отменена', 'Отменена'),
+    )
 
     reservation_date = models.DateField(verbose_name='Дата')
     reservation_start = models.TimeField(verbose_name='Время')
     guests_amount = models.CharField(default='1-2', choices=GUEST_AMOUNT_CHOICES, verbose_name='Количество гостей')
     reservation_commentary = models.CharField(max_length=255, verbose_name='Пожелания к брони', **NULLABLE)
 
+    reservation_status = models.CharField(default='Активна', choices=RESERVATION_STATUS_CHOICES, verbose_name='Статус брони')
     reserved_table = models.ForeignKey(Table, on_delete=models.SET_NULL, related_name='reserved_table', **NULLABLE)
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="Дата создания бронирования")
     reservation_number = models.CharField(max_length=6, null=True, blank=True, unique=True)

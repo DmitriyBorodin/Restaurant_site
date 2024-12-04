@@ -2,12 +2,24 @@ from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, UpdateView, TemplateView
 
+from booking.models import Reservation
 from users.forms import UserRegisterForm, UserProfileForm
 from users.models import User, Feedback
 
 
 class ProfileTemplateView(TemplateView):
     template_name = "users/profile.html"
+
+    def get_context_data(self, **kwargs):
+        # Получаем текущего пользователя
+        context = super().get_context_data(**kwargs)
+
+        # Запрашиваем все резервации для текущего пользователя
+        reservations = Reservation.objects.filter(owner=self.request.user)
+
+        # Добавляем queryset в контекст, чтобы можно было итерировать по нему в шаблоне
+        context['reservations'] = reservations
+        return context
 
 
 class UserRegisterView(CreateView):

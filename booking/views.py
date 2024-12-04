@@ -4,6 +4,7 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import TemplateView, CreateView, UpdateView, \
     DeleteView, ListView, DetailView
+from urllib3 import request
 
 from booking.forms import ReservationForm
 from booking.models import Reservation
@@ -24,6 +25,7 @@ class ReservationCreateView(LoginRequiredMixin, CreateView):
     login_url = '/users/login/'
 
     def form_valid(self, form):
+        form.instance.owner = self.request.user
         # Сохраняем форму
         response = super().form_valid(form)
 
@@ -44,9 +46,11 @@ class ReservationDetailView(DetailView):
 class ReservationUpdateView(LoginRequiredMixin, UpdateView):
     model = Reservation
     form_class = ReservationForm
+    success_url = '/users/profile/'
 
 
 class ReservationDeleteView(LoginRequiredMixin, DeleteView):
     model = Reservation
-    success_url = reverse_lazy("booking:reservation_list")
+    success_url = reverse_lazy("users:profile")
     login_url = '/users/login/'
+    context_object_name = 'reservation'

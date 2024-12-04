@@ -1,6 +1,7 @@
 from django import forms
 from django.core.exceptions import ValidationError
 from django.core.validators import MinValueValidator
+from django.forms.widgets import SelectDateWidget
 from django.utils import timezone
 from datetime import time, datetime
 from .models import Reservation
@@ -10,11 +11,16 @@ class ReservationForm(forms.ModelForm):
         model = Reservation
         fields = ['reservation_date', 'reservation_start', 'guests_amount', 'reservation_commentary']
 
+        year = datetime.now().year
+        current_month = datetime.now().month
+
+        date = datetime.now().day
+
         widgets = {
-            'reservation_date': forms.DateInput(
-                attrs={'type': 'date', 'id': 'id_date'}),
-            # Встроенный календарь HTML5
-            'reservation_start': forms.Select(attrs={'id': 'id_time'})
+            'reservation_date': SelectDateWidget(years=range(year, year+2)),
+            'reservation_start': forms.Select(attrs={'id': 'id_time'}),
+            'reservation_commentary': forms.Textarea(
+                attrs={'rows': 3, 'cols': 3, 'class': 'form-control'})
         }
 
     def __init__(self, *args, **kwargs):

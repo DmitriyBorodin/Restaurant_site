@@ -1,0 +1,30 @@
+{% extends 'booking/index.html' %}
+
+{% block content %}
+<div class="container">
+    <form method="post" enctype="multipart/form-data">
+        <div class="row">
+            <div class="col-6">
+                <div class="card">
+                    <div class="card-body">
+                        <p class="card-text"> Вы действительно хотите удалить
+                            бронь:</p>
+                        <p>Статус: {{ reservation.reservation_status }}</p>
+                        <p>Дата: {{ reservation.reservation_date }}</p>
+                        <p>Время: {{ reservation.reservation_start }}</p>
+                        <form method="post">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-danger">
+                                Да, удалить
+                            </button>
+                            <a class="btn btn-success"
+                               href="{% url 'users:profile' %}" role="button">
+                                Нет, не удалять</a>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock %}

@@ -14,7 +14,7 @@
                                 {% csrf_token %}
                                 {{ form.as_p }}
                                 <button type="submit" class="btn btn-success"
-                                        id="reservation">
+                                        id="reservation" onclick="return confirm('Подтвердите бронирование столика')">
                                     {% if object %}
                                     Сохранить
                                     {% else %}
