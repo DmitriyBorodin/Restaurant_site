@@ -20,7 +20,7 @@ class ReservationForm(forms.ModelForm):
             'reservation_date': SelectDateWidget(years=range(year, year+2)),
             'reservation_start': forms.Select(attrs={'id': 'id_time'}),
             'reservation_commentary': forms.Textarea(
-                attrs={'rows': 3, 'cols': 3, 'class': 'form-control'})
+                attrs={'rows': 3, 'style': 'width: 40%;', 'class': 'form-control'})
         }
 
     def __init__(self, *args, **kwargs):

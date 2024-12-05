@@ -20,109 +20,75 @@
         </div>
 
         <div class="row align-items-md-stretch">
-            <form action="/users/feedback/" method="post" id="feedback_form">
-                <h1 class="display-5 fw-bold">Расскажи нам всё!</h1>
-                {% csrf_token %}
-                <div class="form-group">
-                    <label for="name">Ваше имя</label>
-                    <input name="name" id="name"
-                           value="{% if user.is_authenticated %}{{ user.first_name }}{% else %}{{ '' }}{% endif %}"/>
-                </div>
-                <div class="form-group">
-                    <label for="phone">Ваш телефон</label>
-                    <input name="phone" id="phone" value="{% if user.is_authenticated %}{{ user.phone }}{% else %}{{ '' }}{% endif %}"/>
-                </div>
-                <div class="form-group">
-                    <label for="message">Ваше сообщение</label>
-                    <textarea rows="6" cols="60" name="message"
-                              id="message"></textarea>
-                </div>
-                <div>
-                    <button id="send_feedback" type="submit">Отправить обратную
-                        связь!
-                    </button>
-                </div>
-            </form>
-
-            <!-- Вставляем стиль CSS -->
-            <style>
-                /* Сброс стандартных стилей браузера */
-                * {
-                    margin: 0;
-                    padding: 0;
-                    box-sizing: border-box;
-                }
-
-                /* Стили для формы */
-                #feedback_form {
-                    width: 50%;
-                    padding: 20px;
-                    border: 1px solid #ccc;
-                    border-radius: 8px;
-                }
-
-                /* Группировка элементов формы */
-                .form-group {
-                    margin-bottom: 15px;
-                }
-
-                .form-group label {
-                    display: block;
-                    font-weight: bold;
-                    margin-bottom: 5px;
-                }
-
-                .form-group input,
-                .form-group textarea {
-                    width: 100%;
-                    padding: 10px;
-                    font-size: 14px;
-                    border: 1px solid #ccc;
-                    border-radius: 4px;
-                    box-sizing: border-box; /* Учет padding в ширине */
-                }
-
-                /* Убираем границу у textarea */
-                .form-group textarea {
-                    resize: vertical;
-                }
-
-                /* Стили для кнопки отправки */
-                #send_feedback {
-                    padding: 10px 20px;
-                    font-size: 16px;
-                    color: #fff;
-                    background-color: #007bff;
-                    border: none;
-                    border-radius: 4px;
-                    cursor: pointer;
-                    transition: background-color 0.3s ease;
-                }
-
-                /* Эффект при наведении на кнопку */
-                #send_feedback:hover {
-                    background-color: #0056b3;
-                }
-            </style>
-
-            <script>
-                // Получаем ссылку на форму и кнопку отправки
-                const form = document.getElementById('feedback_form');
-                const sendButton = document.getElementById('send_feedback');
-
-                // Добавляем обработчик на событие отправки формы
-                form.addEventListener('submit', function(event) {
-                    // Предотвращаем отправку формы, чтобы показать уведомление сначала
-                    event.preventDefault();
-
-                    // Показываем всплывающее уведомление
-                    alert('Спасибо за ваш отзыв! Мы получили ваше сообщение.');
-
-                    // Теперь отправляем форму
-                    form.submit();
-                });
-            </script>
             <div class="col-md-6">
+                <div class="h-100 p-4 bg-body-tertiary border rounded-3"
+                     style="background-image: url('{{ MEDIA_URL }}booking/services.jpg'); background-size: cover; background-position: 70% 50%;">
+
+                    <h2>Вот что мы умеем!</h2>
+                    <p style="
+    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5); /* Тень текста */ ">
+                    <h5>Ресторанное обслуживание:</h5>
+                    <a style="margin-bottom: 10px; display: block;">
+                        Приготовление и подача блюд, включая фирменные пельмени
+                        разных видов (традиционные, с необычными начинками,
+                        вегетарианские).</a>
+                    <h5>Доставка еды:</h5>
+                    <a style="margin-bottom: 10px; display: block;"> Заказ
+                        пельменей и других блюд с доставкой на дом или в
+                        офис.</a>
+                    <h5>Услуги на вынос:</h5>
+                    <a style="margin-bottom: 10px; display: block;"> Упаковка
+                        блюд для удобного самовывоза!.</a>
+                    <h5>Кулинарный магазин:</h5>
+                    <a style="margin-bottom: 10px; display: block;"> Продажа
+                        замороженных пельменей сделанных по фирменным рецептам.</a>
+
+                    <style>
+
+                        .btn-new {
+                        padding: .5em 2em;
+                        font-size: 18px; /* Размер текста */
+                        text-decoration: none;
+                        width: 300px; /* Ширина кнопки */
+                        height: 50px; /* Высота кнопки */
+                        display: flex; /* Включаем Flexbox */
+                        padding: .5em 2em;
+                        outline: none;
+                        justify-content: center; /* Выровнять содержимое по горизонтали */
+                        height: 50px;
+                        padding: 10px 20px; /* Внутренние отступы */
+                        text-align: center;
+                        transition: 0.5s;
+                        background-size: 200% auto;
+                        color: white;
+                        box-shadow: 0 0 20px #eee;
+                        border-radius: 10px;
+                        background-image: linear-gradient(to right, #003CC5 0%, #0B63F6 51%, #003CC5 100%);
+                        }
+
+                        .btn-new:hover {
+                        background-position: right center;
+                        }
+
+                        a.button24 {
+                          display: inline-block;
+                          color: white;
+                          text-decoration: none;
+                          padding: .5em 2em;
+                          outline: none;
+                          border-width: 2px 0;
+                          border-style: solid none;
+                          border-color: #FDBE33 #000 #D77206;
+                          border-radius: 6px;
+                          background: linear-gradient(#F3AE0F, #E38916) #E38916;
+                          transition: 0.2s;
+                        }
+                        a.button24:hover { background: linear-gradient(#f5ae00, #f59500) #f5ae00; }
+                        a.button24:active { background: linear-gradient(#f59500, #f5ae00) #f59500; }
+                    </style>
+                </div>
+            </div>
+            <div class="col-md-6" style="height: 500px;">
                 <div class="h-100 p-4 bg-body-tertiary border rounded-3"
                      style="background-image: url('{{ MEDIA_URL }}booking/Book.png'); background-size: cover; background-position: 70% 50%;">
 
@@ -182,6 +148,113 @@
                 </div>
             </div>
         </div>
+        <hr class="featurette-divider">
+        <form action="/users/feedback/" method="post" id="feedback_form">
+            <h1 class="display-5 fw-bold">Расскажи нам всё!</h1>
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="name">Ваше имя</label>
+                <input name="name" id="name"
+                       value="{% if user.is_authenticated %}{{ user.first_name }}{% else %}{{ '' }}{% endif %}"/>
+            </div>
+            <div class="form-group">
+                <label for="phone">Ваш телефон</label>
+                <input name="phone" id="phone"
+                       value="{% if user.is_authenticated %}{{ user.phone }}{% else %}{{ '' }}{% endif %}"/>
+            </div>
+            <div class="form-group">
+                <label for="message">Ваше сообщение</label>
+                <textarea rows="6" cols="60" name="message"
+                          id="message"></textarea>
+            </div>
+            <div>
+                <button id="send_feedback" type="submit">Отправить обратную
+                    связь!
+                </button>
+            </div>
+        </form>
+
+        <!-- Вставляем стиль CSS -->
+        <style>
+    /* Сброс стандартных стилей браузера */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    /* Центрирование формы и увеличение её ширины */
+    #feedback_form {
+        width: 70%; /* Увеличиваем ширину формы */
+        max-width: 900px; /* Устанавливаем максимальную ширину */
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        margin: 0 auto; /* Центрирование формы по горизонтали */
+    }
+
+    /* Группировка элементов формы */
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    .form-group label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+
+    .form-group input,
+    .form-group textarea {
+        width: 100%;
+        padding: 10px;
+        font-size: 14px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box; /* Учет padding в ширине */
+    }
+
+    /* Убираем границу у textarea */
+    .form-group textarea {
+        resize: vertical;
+    }
+
+    /* Стили для кнопки отправки */
+    #send_feedback {
+        padding: 10px 20px;
+        font-size: 16px;
+        color: #fff;
+        background-color: #007bff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    /* Эффект при наведении на кнопку */
+    #send_feedback:hover {
+        background-color: #0056b3;
+    }
+</style>
+
+
+        <script>
+            // Получаем ссылку на форму и кнопку отправки
+            const form = document.getElementById('feedback_form');
+            const sendButton = document.getElementById('send_feedback');
+
+            // Добавляем обработчик на событие отправки формы
+            form.addEventListener('submit', function(event) {
+                // Предотвращаем отправку формы, чтобы показать уведомление сначала
+                event.preventDefault();
+
+                // Показываем всплывающее уведомление
+                alert('Спасибо за ваш отзыв! Мы получили ваше сообщение.');
+
+                // Теперь отправляем форму
+                form.submit();
+            });
+        </script>
 
         <footer class="pt-3 mt-4 text-body-secondary border-top">
         </footer>
