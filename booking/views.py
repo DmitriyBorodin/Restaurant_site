@@ -1,10 +1,8 @@
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import TemplateView, CreateView, UpdateView, \
     DeleteView, ListView, DetailView
-from urllib3 import request
 
 from booking.forms import ReservationForm
 from booking.models import Reservation, Table

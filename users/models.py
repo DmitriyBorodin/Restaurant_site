@@ -1,8 +1,33 @@
+from django.contrib.auth.base_user import BaseUserManager
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from phonenumber_field.modelfields import PhoneNumberField
 
 NULLABLE = {"blank": True, "null": True}
+
+
+class CustomUserManager(BaseUserManager):
+    """Менеджер для пользовательской модели без username"""
+
+    def create_user(self, email, phone, password=None, **extra_fields):
+        if not email:
+            raise ValueError("У пользователя должна быть почта")
+        email = self.normalize_email(email)
+        user = self.model(email=email, phone=phone, **extra_fields)
+        user.set_password(password)
+        user.save(using=self._db)
+        return user
+
+    def create_superuser(self, email, phone, password=None, **extra_fields):
+        extra_fields.setdefault('is_staff', True)
+        extra_fields.setdefault('is_superuser', True)
+
+        if not extra_fields.get('is_staff'):
+            raise ValueError('Superuser must have is_staff=True.')
+        if not extra_fields.get('is_superuser'):
+            raise ValueError('Superuser must have is_superuser=True.')
+
+        return self.create_user(email, phone, password, **extra_fields)
 
 class User(AbstractUser):
     username = None
@@ -13,6 +38,8 @@ class User(AbstractUser):
 
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = []
+
+    objects = CustomUserManager()
 
     class Meta:
         verbose_name = "Пользователь"

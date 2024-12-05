@@ -64,7 +64,7 @@ class Reservation(models.Model):
     def id_generator(size=6, chars=string.ascii_uppercase + string.digits):
         return ''.join(random.choice(chars) for _ in range(size))
 
-    def save(self):
+    def save(self, *args, **kwargs):
         if not self.reservation_number:
             self.reservation_number = self.id_generator()
             while Reservation.objects.filter(reservation_number=self.reservation_number).exists():

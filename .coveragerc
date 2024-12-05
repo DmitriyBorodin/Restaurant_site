@@ -1,0 +1,18 @@
+[report]
+exclude_lines =
+    # Исключить строки, которые содержат указанные комментарии
+    pragma: no cover
+    raise NotImplementedError
+    if __name__ == '__main__':
+
+omit =
+    # Указать файлы или директории для исключения
+    */migrations/*
+    */tests/*
+    */settings.py
+    */manage.py
+    */__init__.py
+    */
+
+[html]
+directory = htmlcov
