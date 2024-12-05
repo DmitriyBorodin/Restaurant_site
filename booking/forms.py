@@ -11,11 +11,12 @@ class ReservationForm(forms.ModelForm):
         model = Reservation
         fields = ['reservation_date', 'reservation_start', 'guests_amount', 'reservation_commentary']
 
+        # Записываем текущий год чтобы позже ограничить дату бронирования
+        # стола только текущим и следующим годом
         year = datetime.now().year
-        current_month = datetime.now().month
 
-        date = datetime.now().day
-
+        # Виджеты для отображения календаря для выбора даты, времени из заданного
+        # списка и изменение отображения поля ввода дла комментариев
         widgets = {
             'reservation_date': SelectDateWidget(years=range(year, year+2)),
             'reservation_start': forms.Select(attrs={'id': 'id_time'}),
@@ -30,7 +31,7 @@ class ReservationForm(forms.ModelForm):
         time_choices = [
             (datetime.strptime(f"{hour}:{minute:02}", "%H:%M").time(),
              f"{hour}:{minute:02}")
-            for hour in range(9, 23)  # Ограничение с 9:00 до 23:30
+            for hour in range(9, 23)  # Ограничение с 9:00 до 22:30
             for minute in (0, 30)
         ]
         self.fields['reservation_start'].widget = forms.Select(choices=time_choices)
@@ -39,6 +40,7 @@ class ReservationForm(forms.ModelForm):
         reservation_date = self.cleaned_data.get('reservation_date')
         reservation_start = self.cleaned_data.get('reservation_start')
 
+        # Проверка, что бронь не на прошедшие дни
         if reservation_date < timezone.localdate():
             raise ValidationError("Нельзя бронировать на прошедшие дни.")
 

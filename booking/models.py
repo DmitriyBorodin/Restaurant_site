@@ -9,7 +9,7 @@ NULLABLE = {"blank": True, "null": True}
 
 
 class Table(models.Model):
-
+    """Модель стола ресторана"""
     TABLE_SIZE_CHOICES = (
         ('Small', 'На 1-2 персон'),
         ('Big', 'На 3+ персон'),
@@ -38,7 +38,7 @@ class Table(models.Model):
 
 
 class Reservation(models.Model):
-
+    """Модель брони стола ресторана"""
     GUEST_AMOUNT_CHOICES = (
         ('1-2', '1-2'),
         ('3-4', '3-4'),
@@ -66,6 +66,7 @@ class Reservation(models.Model):
 
     owner = models.ForeignKey(User, on_delete=models.SET_NULL, verbose_name="reservation_owner", **NULLABLE)
 
+    # Генерация случайного уникального 6ти значного номера брони
     @staticmethod
     def id_generator(size=6, chars=string.ascii_uppercase + string.digits):
         return ''.join(random.choice(chars) for _ in range(size))

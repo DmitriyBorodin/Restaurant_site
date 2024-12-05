@@ -10,14 +10,17 @@ from booking.permissions import IsOwner
 
 
 class IndexView(TemplateView):
+    """View для главной страницы сайта"""
     template_name = "booking/main.html"
 
 
 class AboutView(TemplateView):
+    """View для страницы 'О ресторане'"""
     template_name = "booking/about_us.html"
 
 
 class ReservationCreateView(LoginRequiredMixin, CreateView):
+    """View для создания брони стола ресторана"""
     model = Reservation
     form_class = ReservationForm
     success_url = reverse_lazy('booking:index_page')
@@ -45,16 +48,19 @@ class ReservationCreateView(LoginRequiredMixin, CreateView):
 
 
 class ReservationListView(ListView):
+    """View для просмотра списка броней"""
     model = Reservation
     permission_classes = [IsOwner]
 
 
 class ReservationDetailView(DetailView):
+    """View для просмотра одной брони"""
     model = Reservation
     permission_classes = [IsOwner]
 
 
 class ReservationUpdateView(LoginRequiredMixin, UpdateView):
+    """View для обновления брони"""
     model = Reservation
     form_class = ReservationForm
     success_url = '/users/profile/'
@@ -62,6 +68,7 @@ class ReservationUpdateView(LoginRequiredMixin, UpdateView):
 
 
 class ReservationDeleteView(LoginRequiredMixin, DeleteView):
+    """View для удаления брони"""
     model = Reservation
     success_url = reverse_lazy("users:profile")
     login_url = '/users/login/'

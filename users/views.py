@@ -8,6 +8,7 @@ from users.models import User, Feedback
 
 
 class ProfileTemplateView(TemplateView):
+    """View для страницы профиля пользователя"""
     template_name = "users/profile.html"
 
     def get_context_data(self, **kwargs):
@@ -23,6 +24,7 @@ class ProfileTemplateView(TemplateView):
 
 
 class UserRegisterView(CreateView):
+    """View для создания пользователя"""
     model = User
     form_class = UserRegisterForm
     success_url = reverse_lazy('users:login')
@@ -41,6 +43,7 @@ class UserRegisterView(CreateView):
 
 
 class ProfileView(UpdateView):
+    """View для обновления информации пользователя"""
     model = User
     form_class = UserProfileForm
     success_url = reverse_lazy('users:profile')
@@ -50,6 +53,7 @@ class ProfileView(UpdateView):
 
 
 class FeedbackCreateView(CreateView):
+    """View для создания обратной связи"""
     model = Feedback
     fields = ['name', 'phone', 'message']
     success_url = reverse_lazy('booking:index_page')

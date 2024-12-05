@@ -8,14 +8,13 @@ NULLABLE = {"blank": True, "null": True}
 
 class CustomUserManager(BaseUserManager):
     """Менеджер для пользовательской модели без username"""
-
     def create_user(self, email, phone, password=None, **extra_fields):
         if not email:
             raise ValueError("У пользователя должна быть почта")
         email = self.normalize_email(email)
         user = self.model(email=email, phone=phone, **extra_fields)
         user.set_password(password)
-        user.save(using=self._db)
+        user.save()
         return user
 
     def create_superuser(self, email, phone, password=None, **extra_fields):
@@ -31,6 +30,7 @@ class CustomUserManager(BaseUserManager):
 
 
 class User(AbstractUser):
+    """Модель пользователя"""
     username = None
     email = models.EmailField(unique=True, verbose_name="Почта")
     phone = PhoneNumberField(unique=True, verbose_name="Телефон")
@@ -51,6 +51,7 @@ class User(AbstractUser):
 
 
 class Feedback(models.Model):
+    """Модель обратной связи от посетителей"""
     name = models.CharField(max_length=255, verbose_name='Имя отправителя')
     phone = models.CharField(max_length=20, verbose_name='Телефон отправителя')
     message = models.TextField(verbose_name="Сообщение")
