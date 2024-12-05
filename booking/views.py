@@ -43,6 +43,7 @@ class ReservationCreateView(LoginRequiredMixin, CreateView):
         # Возвращаем стандартное поведение
         return response
 
+
 class ReservationListView(ListView):
     model = Reservation
     permission_classes = [IsOwner]

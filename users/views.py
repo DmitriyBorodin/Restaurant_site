@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, UpdateView, TemplateView
 
@@ -39,6 +39,7 @@ class UserRegisterView(CreateView):
         # Если параметра `next` нет, используем стандартный `success_url`
         return response
 
+
 class ProfileView(UpdateView):
     model = User
     form_class = UserProfileForm
@@ -46,6 +47,7 @@ class ProfileView(UpdateView):
 
     def get_object(self, queryset=None):
         return self.request.user
+
 
 class FeedbackCreateView(CreateView):
     model = Feedback

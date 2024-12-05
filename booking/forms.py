@@ -1,10 +1,10 @@
 from django import forms
 from django.core.exceptions import ValidationError
-from django.core.validators import MinValueValidator
 from django.forms.widgets import SelectDateWidget
 from django.utils import timezone
 from datetime import time, datetime
 from .models import Reservation
+
 
 class ReservationForm(forms.ModelForm):
     class Meta:
@@ -50,6 +50,5 @@ class ReservationForm(forms.ModelForm):
         # Проверка, что время в пределах рабочего времени ресторана (с 9 до 23)
         if not (time(9, 0) <= reservation_start <= time(23, 0)):
             raise ValidationError("Время резервирования должно быть в пределах с 9:00 до 23:00.")
-
 
         return reservation_start

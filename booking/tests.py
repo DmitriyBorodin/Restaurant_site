@@ -1,6 +1,5 @@
-from datetime import date, time, timedelta, datetime
+from datetime import date, time, timedelta
 
-from django.core.exceptions import ValidationError
 from django.test import TestCase
 from django.utils import timezone
 
@@ -154,7 +153,6 @@ class ReservationModelTestCase(TestCase):
 
         # Ожидаем, что форма не будет валидной
         self.assertFalse(form.is_valid())
-
 
     def test_invalid_reservation_time_working_hours(self):
         """Проверяем, что нельзя забронировать столик на нерабочие часы ресторана"""

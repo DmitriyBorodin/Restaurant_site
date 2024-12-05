@@ -7,6 +7,7 @@ from users.models import User
 
 NULLABLE = {"blank": True, "null": True}
 
+
 class Table(models.Model):
 
     TABLE_SIZE_CHOICES = (
@@ -19,9 +20,11 @@ class Table(models.Model):
         ('Reserved', 'Забронирован'),
     )
 
-    table_status = models.CharField(max_length=255,
-                                          choices=RESERVATION_STATUS_CHOICES,
-                                          verbose_name='Статус бронирования стола', default='Available')
+    table_status = models.CharField(
+        max_length=255,
+        choices=RESERVATION_STATUS_CHOICES,
+        verbose_name='Статус бронирования стола',
+        default='Available')
     table_number = models.PositiveIntegerField(unique=True, verbose_name='Номер стола')
     table_size = models.CharField(max_length=255, choices=TABLE_SIZE_CHOICES, verbose_name='Размер стола')
 
@@ -53,7 +56,10 @@ class Reservation(models.Model):
     guests_amount = models.CharField(default='1-2', choices=GUEST_AMOUNT_CHOICES, verbose_name='Количество гостей')
     reservation_commentary = models.CharField(max_length=255, verbose_name='Пожелания к брони', **NULLABLE)
 
-    reservation_status = models.CharField(default='Активна', choices=RESERVATION_STATUS_CHOICES, verbose_name='Статус брони')
+    reservation_status = models.CharField(
+        default='Активна',
+        choices=RESERVATION_STATUS_CHOICES,
+        verbose_name='Статус брони')
     reserved_table = models.ForeignKey(Table, on_delete=models.SET_NULL, related_name='reserved_table', **NULLABLE)
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="Дата создания бронирования")
     reservation_number = models.CharField(max_length=6, null=True, blank=True, unique=True)

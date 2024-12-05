@@ -67,7 +67,8 @@ class FeedbackModelTest(TestCase):
 
     def test_feedback_str_method(self):
         """Проверяем корректность метода __str__"""
-        expected_str = f'Обратная связь от {self.feedback_data["name"]} ({self.feedback_data["phone"]}):\n{self.feedback_data["message"]}'
+        expected_str = (f'Обратная связь от {self.feedback_data["name"]} '
+                        f'({self.feedback_data["phone"]}):\n{self.feedback_data["message"]}')
         self.assertEqual(str(self.feedback), expected_str)
 
     def test_feedback_validation(self):
