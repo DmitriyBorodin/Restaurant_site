@@ -7,7 +7,8 @@ from django.views.generic import TemplateView, CreateView, UpdateView, \
 from urllib3 import request
 
 from booking.forms import ReservationForm
-from booking.models import Reservation
+from booking.models import Reservation, Table
+from booking.permissions import IsOwner
 
 
 class IndexView(TemplateView):
@@ -24,6 +25,15 @@ class ReservationCreateView(LoginRequiredMixin, CreateView):
     success_url = reverse_lazy('booking:index_page')
     login_url = '/users/login/'
 
+    def get_context_data(self, **kwargs):
+        # Получаем текущего пользователя
+        context = super().get_context_data(**kwargs)
+        # Запрашиваем все резервации для текущего пользователя
+        reservations = Table.objects.all()
+        # Добавляем queryset в контекст, чтобы можно было итерировать по нему в шаблоне
+        context['tables'] = reservations
+        return context
+
     def form_valid(self, form):
         form.instance.owner = self.request.user
         # Сохраняем форму
@@ -37,16 +47,19 @@ class ReservationCreateView(LoginRequiredMixin, CreateView):
 
 class ReservationListView(ListView):
     model = Reservation
+    permission_classes = [IsOwner]
 
 
 class ReservationDetailView(DetailView):
     model = Reservation
+    permission_classes = [IsOwner]
 
 
 class ReservationUpdateView(LoginRequiredMixin, UpdateView):
     model = Reservation
     form_class = ReservationForm
     success_url = '/users/profile/'
+    permission_classes = [IsOwner]
 
 
 class ReservationDeleteView(LoginRequiredMixin, DeleteView):
@@ -54,3 +67,4 @@ class ReservationDeleteView(LoginRequiredMixin, DeleteView):
     success_url = reverse_lazy("users:profile")
     login_url = '/users/login/'
     context_object_name = 'reservation'
+    permission_classes = [IsOwner]
