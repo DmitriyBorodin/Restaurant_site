@@ -56,7 +56,7 @@
    Для начала, клонируйте репозиторий на свою машину и перейдите в папку
    проекта:
    ```bash
-   git clone git@github.com:DmitriyBorodin/DF2.git
+   git clone git@github.com:DmitriyBorodin/Restaurant_site.git
    cd DF2
 
 2. **Настройка виртуального окружения с Poetry:**
